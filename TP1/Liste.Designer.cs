@@ -36,11 +36,24 @@
             cbClients = new ComboBox();
             bsClients2 = new BindingSource(components);
             btn_Afficher = new Button();
+            txtMontant = new TextBox();
+            btnValider = new Button();
+            dgvPartitions = new DataGridView();
+            bsPartitions = new BindingSource(components);
+            dgvPartitionsStyle = new DataGridView();
+            cbStyle = new ComboBox();
+            bsStyle = new BindingSource(components);
+            bsPartitionsStyle = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)bsClients).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCommandes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bsCommandes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bsClients2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPartitions).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bsPartitions).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPartitionsStyle).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bsStyle).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bsPartitionsStyle).BeginInit();
             SuspendLayout();
             // 
             // dgvClients
@@ -50,10 +63,10 @@
             dgvClients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvClients.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClients.Location = new Point(197, 286);
+            dgvClients.Location = new Point(12, 12);
             dgvClients.Name = "dgvClients";
             dgvClients.ReadOnly = true;
-            dgvClients.Size = new Size(591, 152);
+            dgvClients.Size = new Size(508, 211);
             dgvClients.TabIndex = 0;
             // 
             // dgvCommandes
@@ -63,17 +76,17 @@
             dgvCommandes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvCommandes.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvCommandes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCommandes.Location = new Point(196, 12);
+            dgvCommandes.Location = new Point(11, 229);
             dgvCommandes.Name = "dgvCommandes";
             dgvCommandes.ReadOnly = true;
-            dgvCommandes.Size = new Size(592, 268);
+            dgvCommandes.Size = new Size(509, 203);
             dgvCommandes.TabIndex = 1;
             // 
             // cbClients
             // 
             cbClients.DropDownStyle = ComboBoxStyle.DropDownList;
             cbClients.FormattingEnabled = true;
-            cbClients.Location = new Point(12, 12);
+            cbClients.Location = new Point(526, 12);
             cbClients.Name = "cbClients";
             cbClients.Size = new Size(169, 23);
             cbClients.TabIndex = 2;
@@ -84,7 +97,7 @@
             // 
             // btn_Afficher
             // 
-            btn_Afficher.Location = new Point(12, 412);
+            btn_Afficher.Location = new Point(526, 406);
             btn_Afficher.Name = "btn_Afficher";
             btn_Afficher.Size = new Size(169, 26);
             btn_Afficher.TabIndex = 3;
@@ -92,11 +105,72 @@
             btn_Afficher.UseVisualStyleBackColor = true;
             btn_Afficher.Click += btn_Afficher_Click;
             // 
+            // txtMontant
+            // 
+            txtMontant.Location = new Point(526, 302);
+            txtMontant.Name = "txtMontant";
+            txtMontant.Size = new Size(169, 23);
+            txtMontant.TabIndex = 4;
+            // 
+            // btnValider
+            // 
+            btnValider.Location = new Point(526, 331);
+            btnValider.Name = "btnValider";
+            btnValider.Size = new Size(169, 23);
+            btnValider.TabIndex = 5;
+            btnValider.Text = "Valider";
+            btnValider.UseVisualStyleBackColor = true;
+            btnValider.Click += btnValider_Click;
+            // 
+            // dgvPartitions
+            // 
+            dgvPartitions.AllowUserToAddRows = false;
+            dgvPartitions.AllowUserToDeleteRows = false;
+            dgvPartitions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvPartitions.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvPartitions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPartitions.Location = new Point(13, 438);
+            dgvPartitions.Name = "dgvPartitions";
+            dgvPartitions.ReadOnly = true;
+            dgvPartitions.Size = new Size(507, 191);
+            dgvPartitions.TabIndex = 6;
+            // 
+            // dgvPartitionsStyle
+            // 
+            dgvPartitionsStyle.AllowUserToAddRows = false;
+            dgvPartitionsStyle.AllowUserToDeleteRows = false;
+            dgvPartitionsStyle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvPartitionsStyle.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvPartitionsStyle.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPartitionsStyle.Location = new Point(887, 12);
+            dgvPartitionsStyle.Name = "dgvPartitionsStyle";
+            dgvPartitionsStyle.ReadOnly = true;
+            dgvPartitionsStyle.Size = new Size(484, 211);
+            dgvPartitionsStyle.TabIndex = 7;
+            // 
+            // cbStyle
+            // 
+            cbStyle.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbStyle.FormattingEnabled = true;
+            cbStyle.Location = new Point(712, 12);
+            cbStyle.Name = "cbStyle";
+            cbStyle.Size = new Size(169, 23);
+            cbStyle.TabIndex = 8;
+            // 
+            // bsStyle
+            // 
+            bsStyle.CurrentChanged += bsStyle_CurrentChanged;
+            // 
             // Liste
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1383, 632);
+            Controls.Add(cbStyle);
+            Controls.Add(dgvPartitionsStyle);
+            Controls.Add(dgvPartitions);
+            Controls.Add(btnValider);
+            Controls.Add(txtMontant);
             Controls.Add(btn_Afficher);
             Controls.Add(cbClients);
             Controls.Add(dgvCommandes);
@@ -109,7 +183,13 @@
             ((System.ComponentModel.ISupportInitialize)dgvCommandes).EndInit();
             ((System.ComponentModel.ISupportInitialize)bsCommandes).EndInit();
             ((System.ComponentModel.ISupportInitialize)bsClients2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPartitions).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bsPartitions).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPartitionsStyle).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bsStyle).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bsPartitionsStyle).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -121,5 +201,13 @@
         private ComboBox cbClients;
         private BindingSource bsClients2;
         private Button btn_Afficher;
+        private TextBox txtMontant;
+        private Button btnValider;
+        private DataGridView dgvPartitions;
+        private BindingSource bsPartitions;
+        private DataGridView dgvPartitionsStyle;
+        private ComboBox cbStyle;
+        private BindingSource bsStyle;
+        private BindingSource bsPartitionsStyle;
     }
 }

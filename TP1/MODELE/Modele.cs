@@ -23,10 +23,26 @@ namespace TP1.MODELE
         {
             return monModel.Commandes.Include(a => a.NumcliNavigation).ToList();
         }
+        public static List<Partition> listePartitions()
+        {
+            return monModel.Partitions.ToList();
+        }
+        public static List<Style> listeStyle()
+        {
+            return monModel.Styles.ToList();
+        }
+
         public static List<Commande> listeCommandesParClient(int idClient)
         {
             List<Commande> lesCommandes = monModel.Commandes.Where(p => p.Numcli ==
            idClient).Include(p => p.NumcliNavigation).ToList();
+            return lesCommandes;
+        }
+
+        public static List<Commande> listeCommandesParMontant(int Montant)
+        {
+            List<Commande> lesCommandes = monModel.Commandes.Where(p => p.Montantcde >=
+           Montant).Include(p => p.NumcliNavigation).ToList();
             return lesCommandes;
         }
 

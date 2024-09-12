@@ -15,6 +15,15 @@ namespace TP1
             dgvClients.DataSource = bsClients;
             dgvClients.Columns[0].Visible = false;
 
+            bsPartitions.DataSource = Modele.listePartitions(); // appel de la méthode listeClients
+            dgvPartitions.DataSource = bsPartitions;
+
+            bsPartitionsStyle.DataSource = Modele.listeStyle().Select(x => new
+            {
+                x.Numstyle,
+                x.Libstyle,
+            });
+            dgvPartitionsStyle.DataSource = bsPartitionsStyle;
 
             bsCommandes.DataSource = Modele.listeCommandes().Select(x => new
             {
@@ -67,6 +76,29 @@ namespace TP1
             dgvCommandes.DataSource = bsCommandes;
         }
 
-        
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            int Montant = Convert.ToInt32(txtMontant.Text);
+            bsCommandes.DataSource = Modele.listeCommandesParMontant(Montant).Select(x => new
+            {
+                x.Numcde,
+                x.Datecde,
+                x.Montantcde,
+                x.NumcliNavigation.Nomcli,
+                x.NumcliNavigation.Prenomcli
+            });
+            dgvCommandes.DataSource = bsCommandes;
+        }
+
+        private void bsStyle_CurrentChanged(object sender, EventArgs e)
+        {
+            int IDC = Convert.ToInt32(cbStyle.SelectedValue);
+            int Style = Convert.ToInt32(cbStyle.SelectedValue);
+            bsStyle.DataSource = Modele.listeStyle().Select(x => new
+            {
+                x.Libstyle
+            });
+            dgvPartitionsStyle.DataSource = bsStyle;
+        }
     }
 }
