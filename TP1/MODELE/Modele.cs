@@ -19,7 +19,7 @@ namespace TP1.MODELE
         {
             return monModel.Clients.ToList();
         }
-        public static List<Commande> listeCommandes()
+        public static List<Entities.Commande> listeCommandes()
         {
             return monModel.Commandes.Include(a => a.NumcliNavigation).ToList();
         }
@@ -32,18 +32,25 @@ namespace TP1.MODELE
             return monModel.Styles.ToList();
         }
 
-        public static List<Commande> listeCommandesParClient(int idClient)
+        public static List<Entities.Commande> listeCommandesParClient(int idClient)
         {
-            List<Commande> lesCommandes = monModel.Commandes.Where(p => p.Numcli ==
+            List<Entities.Commande> lesCommandes = monModel.Commandes.Where(p => p.Numcli ==
            idClient).Include(p => p.NumcliNavigation).ToList();
             return lesCommandes;
         }
 
-        public static List<Commande> listeCommandesParMontant(int Montant)
+        public static List<Entities.Commande> listeCommandesParMontant(int Montant)
         {
-            List<Commande> lesCommandes = monModel.Commandes.Where(p => p.Montantcde >=
+            List<Entities.Commande> lesCommandes = monModel.Commandes.Where(p => p.Montantcde >=
            Montant).Include(p => p.NumcliNavigation).ToList();
             return lesCommandes;
+        }
+
+        public static List<Partition> listePartitionParStyle(int Style)
+        {
+            List<Partition> lesPartitionsStyle = monModel.Partitions.Where(p => p.Numstyle ==
+           Style).Include(p => p.NumstyleNavigation).ToList();
+            return lesPartitionsStyle;
         }
 
     }

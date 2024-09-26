@@ -1,3 +1,4 @@
+using TP1.Entities;
 using TP1.MODELE;
 
 namespace TP1
@@ -45,6 +46,15 @@ namespace TP1
             });
             cbClients.DataSource = bsClients2;
 
+
+            cbStyle.ValueMember = "NUMSTYLE";
+            cbStyle.DisplayMember = "Libstyle";
+            bsStyle.DataSource = (Modele.listeStyle()).Select(x => new
+            {
+                x.Numstyle,
+                x.Libstyle
+            });
+            cbStyle.DataSource = bsStyle;
         }
 
         private void BsClients2_CurrentChanged(object sender, EventArgs e)
@@ -74,6 +84,15 @@ namespace TP1
                 x.NumcliNavigation.Prenomcli
             });
             dgvCommandes.DataSource = bsCommandes;
+
+            bsPartitionsStyle.DataSource = Modele.listePartitions().Select(x => new
+            {
+                x.Numpart,
+                x.Libpart,
+                x.Prixpart,
+                x.Numstyle
+            });
+            dgvPartitionsStyle.DataSource = bsPartitionsStyle;
         }
 
         private void btnValider_Click(object sender, EventArgs e)
@@ -92,13 +111,21 @@ namespace TP1
 
         private void bsStyle_CurrentChanged(object sender, EventArgs e)
         {
-            int IDC = Convert.ToInt32(cbStyle.SelectedValue);
             int Style = Convert.ToInt32(cbStyle.SelectedValue);
-            bsStyle.DataSource = Modele.listeStyle().Select(x => new
+            bsPartitionsStyle.DataSource = Modele.listePartitionParStyle(Style).Select(x => new
             {
-                x.Libstyle
+                x.Numpart,
+                x.Libpart,
+                x.Prixpart,
+                x.Numstyle
             });
-            dgvPartitionsStyle.DataSource = bsStyle;
+            dgvPartitionsStyle.DataSource = bsPartitionsStyle;
+        }
+
+        private void btnAjout_Click(object sender, EventArgs e)
+        {
+            GestionCommandes gestionCommandes = new GestionCommandes();
+            gestionCommandes.Show();
         }
     }
 }
