@@ -127,5 +127,38 @@ namespace TP1
             GestionCommandes gestionCommandes = new GestionCommandes();
             gestionCommandes.Show();
         }
+
+        private void btnModifier_Click(object sender, EventArgs e)
+        {
+            System.Type type = bsCommandes.Current.GetType();
+            int idCommande = (int)type.GetProperty("Numcde").GetValue(bsCommandes.Current, null);
+            GestionCommandes gestionCommandes = new GestionCommandes(idCommande);
+            gestionCommandes.Show();
+        }
+
+        private void btnSupprimer_Click(object sender, EventArgs e)
+        {
+            bool rep = false;
+
+            System.Type type = bsCommandes.Current.GetType();
+            int idCommande = (int)type.GetProperty("Numcde").GetValue(bsCommandes.Current, null);
+            int montant = (int)type.GetProperty("Montantcde").GetValue(bsCommandes.Current, null);
+            string nom = (string)type.GetProperty("Nomcli").GetValue(bsCommandes.Current, null);
+            string prenom = (string)type.GetProperty("Prenomcli").GetValue(bsCommandes.Current, null);
+            DateTime datecde = (DateTime)type.GetProperty("Datecde").GetValue(bsCommandes.Current, null);
+
+            if (MessageBox.Show("Etes vous sur de vouloir supprimer la commande : " + idCommande + " d'un montant de " + montant + "€ et avec le client " + prenom + " " + nom + " à la date du " + datecde, "Suppression", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                rep = Modele.SuppCommande(idCommande);
+                if (rep)
+                {
+                    MessageBox.Show("upprimer avec succès !!");
+                }
+                else
+                {
+                    MessageBox.Show("Echec de la surppression !");
+                }
+            }
+        }
     }
 }

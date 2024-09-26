@@ -45,6 +45,8 @@
             bsStyle = new BindingSource(components);
             bsPartitionsStyle = new BindingSource(components);
             btnAjout = new Button();
+            btnModifier = new Button();
+            btnSupprimer = new Button();
             ((System.ComponentModel.ISupportInitialize)bsClients).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCommandes).BeginInit();
@@ -164,19 +166,41 @@
             // 
             // btnAjout
             // 
-            btnAjout.Location = new Point(159, 471);
+            btnAjout.Location = new Point(351, 471);
             btnAjout.Name = "btnAjout";
-            btnAjout.Size = new Size(199, 31);
+            btnAjout.Size = new Size(160, 31);
             btnAjout.TabIndex = 9;
             btnAjout.Text = "Ajouter";
             btnAjout.UseVisualStyleBackColor = true;
             btnAjout.Click += btnAjout_Click;
             // 
+            // btnModifier
+            // 
+            btnModifier.Location = new Point(185, 471);
+            btnModifier.Name = "btnModifier";
+            btnModifier.Size = new Size(160, 31);
+            btnModifier.TabIndex = 10;
+            btnModifier.Text = "Modifier";
+            btnModifier.UseVisualStyleBackColor = true;
+            btnModifier.Click += btnModifier_Click;
+            // 
+            // btnSupprimer
+            // 
+            btnSupprimer.Location = new Point(19, 471);
+            btnSupprimer.Name = "btnSupprimer";
+            btnSupprimer.Size = new Size(160, 31);
+            btnSupprimer.TabIndex = 11;
+            btnSupprimer.Text = "Supprimer";
+            btnSupprimer.UseVisualStyleBackColor = true;
+            btnSupprimer.Click += btnSupprimer_Click;
+            // 
             // Liste
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1383, 632);
+            ClientSize = new Size(1383, 524);
+            Controls.Add(btnSupprimer);
+            Controls.Add(btnModifier);
             Controls.Add(btnAjout);
             Controls.Add(cbStyle);
             Controls.Add(dgvPartitionsStyle);
@@ -222,5 +246,7 @@
         private BindingSource bsStyle;
         private BindingSource bsPartitionsStyle;
         private Button btnAjout;
+        private Button btnModifier;
+        private Button btnSupprimer;
     }
 }

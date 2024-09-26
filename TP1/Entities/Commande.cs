@@ -9,7 +9,7 @@ public partial class Commande
 
     public int Numcde { get; set; }
 
-    public DateOnly? Datecde { get; set; }
+    public DateTime Datecde { get; set; }
 
     public int? Montantcde { get; set; }
 
