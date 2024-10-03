@@ -34,6 +34,10 @@ namespace TP1.MODELE
         {
             return monModel.Styles.ToList();
         }
+        public static List<Modelivraison> listeModeLivraisons()
+        {
+            return monModel.Modelivraisons.ToList();
+        }
 
         public static List<Entities.Commande> listeCommandesParClient(int idClient)
         {
@@ -55,8 +59,15 @@ namespace TP1.MODELE
            Style).Include(p => p.NumstyleNavigation).ToList();
             return lesPartitionsStyle;
         }
+        public static List<Entities.Commande> listeCommandesParModeLivraison(int idMode)
+        {
+            List<Entities.Commande> lesCommandes = monModel.Commandes.Where(p => p.Idmode ==
+           idMode).Include(p => p.NumcliNavigation).Include(p => p.IdmodeNavigation).ToList();
+            return lesCommandes;
+        }
 
-        public static bool AjoutCommande(int montant, DateTime dateC, int idClient)
+
+        public static bool AjoutCommande(int montant, DateTime dateC, int idClient, int idModeLivraison)
         {
             Commande maCommande;
             bool vretour = true;
@@ -67,6 +78,7 @@ namespace TP1.MODELE
                 maCommande.Datecde = dateC.Date; // la propriété DateCde doit être
                 //en DateTime dans la BD et dans la classe Commande, modifier si besoin.
                 maCommande.Numcli = idClient;
+                maCommande.Idmode = idModeLivraison;
                 // ajout de l’objet : correspond à un insert
                 monModel.Commandes.Add(maCommande);
                 monModel.SaveChanges();

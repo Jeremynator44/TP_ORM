@@ -22,6 +22,10 @@ public partial class LoubeyreJeremyBdPartitionsContext : DbContext
 
     public virtual DbSet<Commande> Commandes { get; set; }
 
+    public virtual DbSet<Livraison> Livraisons { get; set; }
+
+    public virtual DbSet<Modelivraison> Modelivraisons { get; set; }
+
     public virtual DbSet<Partition> Partitions { get; set; }
 
     public virtual DbSet<Style> Styles { get; set; }
@@ -111,6 +115,43 @@ public partial class LoubeyreJeremyBdPartitionsContext : DbContext
                         j.IndexerProperty<int>("Numcde").HasColumnName("NUMCDE");
                         j.IndexerProperty<int>("Numpart").HasColumnName("NUMPART");
                     });
+        });
+
+        modelBuilder.Entity<Livraison>(entity =>
+        {
+            entity.HasKey(e => e.Idlivraison).HasName("PRIMARY");
+
+            entity.ToTable("livraison");
+
+            entity.HasIndex(e => e.Idmode, "livraison_ibfk_1");
+
+            entity.Property(e => e.Idlivraison)
+                .ValueGeneratedNever()
+                .HasColumnName("IDLIVRAISON");
+            entity.Property(e => e.Description)
+                .HasMaxLength(50)
+                .HasColumnName("DESCRIPTION");
+            entity.Property(e => e.Idmode).HasColumnName("IDMODE");
+            entity.Property(e => e.Nom)
+                .HasMaxLength(50)
+                .HasColumnName("NOM");
+
+            entity.HasOne(d => d.IdmodeNavigation).WithMany(p => p.Livraisons)
+                .HasForeignKey(d => d.Idmode)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("livraison_ibfk_1");
+        });
+
+        modelBuilder.Entity<Modelivraison>(entity =>
+        {
+            entity.HasKey(e => e.Idmode).HasName("PRIMARY");
+
+            entity.ToTable("modelivraison");
+
+            entity.Property(e => e.Idmode).HasColumnName("IDMODE");
+            entity.Property(e => e.Mode)
+                .HasMaxLength(50)
+                .HasColumnName("MODE");
         });
 
         modelBuilder.Entity<Partition>(entity =>

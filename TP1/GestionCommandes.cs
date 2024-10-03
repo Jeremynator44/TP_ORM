@@ -45,8 +45,18 @@ namespace TP1
                 });
                 cbListeClients.DataSource = bsListeClients;
 
+                cbListeModeLivraison.ValueMember = "IDMODE";
+                cbListeModeLivraison.DisplayMember = "MODE";
+                bsListeModeLivraison.DataSource = (Modele.listeModeLivraisons()).Select(x => new
+                {
+                    x.Idmode,
+                    x.Mode
+                });
+                cbListeModeLivraison.DataSource = bsListeModeLivraison;
+
                 txtMontant.Text = "";
                 cbListeClients.SelectedIndex = -1;
+                cbListeModeLivraison.SelectedIndex = -1;
                 dtPicker.Value = DateTime.Today;
             }
             if (modif)
@@ -71,6 +81,7 @@ namespace TP1
         {
             txtMontant.Text = "";
             cbListeClients.SelectedIndex = -1;
+            cbListeModeLivraison.SelectedIndex = -1;
             dtPicker.Value = DateTime.Today;
 
         }
@@ -88,13 +99,14 @@ namespace TP1
             {
                 if (txtMontant.Text != "" && Convert.ToInt32(txtMontant.Text) >= 0 && cbListeClients.SelectedIndex != -1)
                 {
-                    rep = Modele.AjoutCommande(Convert.ToInt32(txtMontant.Text), dtPicker.Value, Convert.ToInt32(cbListeClients.SelectedValue));
+                    rep = Modele.AjoutCommande(Convert.ToInt32(txtMontant.Text), dtPicker.Value, Convert.ToInt32(cbListeClients.SelectedValue), Convert.ToInt32(cbListeModeLivraison.SelectedValue));
 
                     if (rep)
                     {
                         MessageBox.Show("Ajouter avec succès !!");
                         txtMontant.Text = "";
                         cbListeClients.SelectedIndex = -1;
+                        cbListeModeLivraison.SelectedIndex = -1;
                         dtPicker.Value = DateTime.Today;
                     }
                     else

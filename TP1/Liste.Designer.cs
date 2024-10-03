@@ -47,6 +47,8 @@
             btnAjout = new Button();
             btnModifier = new Button();
             btnSupprimer = new Button();
+            cbLivraison = new ComboBox();
+            bsLivraison = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)bsClients).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvCommandes).BeginInit();
@@ -57,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvPartitionsStyle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bsStyle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bsPartitionsStyle).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bsLivraison).BeginInit();
             SuspendLayout();
             // 
             // dgvClients
@@ -194,11 +197,21 @@
             btnSupprimer.UseVisualStyleBackColor = true;
             btnSupprimer.Click += btnSupprimer_Click;
             // 
+            // cbLivraison
+            // 
+            cbLivraison.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbLivraison.FormattingEnabled = true;
+            cbLivraison.Location = new Point(712, 406);
+            cbLivraison.Name = "cbLivraison";
+            cbLivraison.Size = new Size(169, 23);
+            cbLivraison.TabIndex = 12;
+            // 
             // Liste
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1383, 524);
+            ClientSize = new Size(1383, 552);
+            Controls.Add(cbLivraison);
             Controls.Add(btnSupprimer);
             Controls.Add(btnModifier);
             Controls.Add(btnAjout);
@@ -224,6 +237,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvPartitionsStyle).EndInit();
             ((System.ComponentModel.ISupportInitialize)bsStyle).EndInit();
             ((System.ComponentModel.ISupportInitialize)bsPartitionsStyle).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bsLivraison).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -248,5 +262,7 @@
         private Button btnAjout;
         private Button btnModifier;
         private Button btnSupprimer;
+        private ComboBox cbLivraison;
+        private BindingSource bsLivraison;
     }
 }

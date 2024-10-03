@@ -57,18 +57,19 @@ namespace TP1
             cbStyle.DataSource = bsStyle;
         }
 
-        private void BsClients2_CurrentChanged(object sender, EventArgs e)
+        private void BsLivraison_CurrentChanged(object sender, EventArgs e)
         {
-            int IDC = Convert.ToInt32(cbClients.SelectedValue);
-            int IdClient = Convert.ToInt32(cbClients.SelectedValue);
-            bsCommandes.DataSource = Modele.listeCommandesParClient(IdClient).Select(x => new
+            int IDM = Convert.ToInt32(cbClients.SelectedValue);
+            int IdMode = Convert.ToInt32(cbLivraison.SelectedValue);
+            bsCommandes.DataSource = Modele.listeCommandesParModeLivraison(IdMode).Select(x => new
             {
                 x.Numcde,
                 x.Datecde,
                 x.Montantcde,
                 x.NumcliNavigation.Nomcli,
-                x.NumcliNavigation.Prenomcli
-            })
+                x.NumcliNavigation.Prenomcli,
+                x.Idmode
+            });
                 .OrderBy(x => x.Datecde);
             dgvCommandes.DataSource = bsCommandes;
         }
